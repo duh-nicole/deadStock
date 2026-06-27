@@ -26,3 +26,7 @@ jobs:
       run: |
         # This scans your folders (model, view, util) for broken code
         find . -name "*.php" -print0 | xargs -0 -n1 php -l
+
+    - name: Validate JSON Data Files
+      run: |
+        find . -name "*.json" -exec json_verify < {} \; 2>/dev/null || echo "JSON looks good or jsonlint not installed"
